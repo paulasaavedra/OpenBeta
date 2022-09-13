@@ -1,4 +1,4 @@
-name: BCIlove
+name: OpenBeta
 channels:
   - conda-forge
   - defaults
@@ -305,4 +305,4 @@ dependencies:
     - xarray==2022.3.0
     - zope-event==4.5.0
     - zope-interface==5.4.0
-prefix: C:\Users\PaulaSaavedra\anaconda3\envs\BCIlove
+prefix: C:\Users\PaulaSaavedra\anaconda3\envs\OpenBeta

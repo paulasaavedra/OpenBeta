@@ -9,7 +9,7 @@ from psychopy import visual, core, sound, monitors
 import psychopy
 import random
 import psychtoolbox as ptb
-import keyboard
+from pynput import keyboard
 import time
 def experiment (info, board):
   

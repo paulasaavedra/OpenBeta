@@ -1,0 +1,18 @@
+1) Crear un environment con la siguiente linea:
+
+conda create -n "myenv" python=3.9.12
+
+2) Activar el environment:
+conda activate myenv
+
+3) Luego instalar dentro del environment las siguientes lineas:
+
+pip install spyder-kernels=1.9.1
+pip install pynput
+conda install -c conda-forge psychopy
+pip install soundfile
+pip install psychtoolbox
+pip install brainflow
+pip install mne
+pip install mne_bids
+
