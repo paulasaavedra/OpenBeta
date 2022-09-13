@@ -7,6 +7,7 @@ Created on Tue Oct 19 12:15:42 2021
 
 import os
 folder_path = 'C:\\Users\\PaulaSaavedra\\PaulaGD\\IMAL\\PA_Interfaz\\OpenBCI_Python'
+
 os.chdir(folder_path)
 
 from pynput import keyboard as kb
