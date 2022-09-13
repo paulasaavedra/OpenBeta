@@ -1,4 +1,4 @@
-name: interfaz
+name: BCIlove
 channels:
   - conda-forge
   - defaults
@@ -17,8 +17,8 @@ dependencies:
   - brotli=1.0.9=ha925a31_2
   - brotlipy=0.7.0=py39h2bbff1b_1003
   - bzip2=1.0.8=he774522_0
-  - ca-certificates=2022.4.26=haa95532_0
-  - certifi=2021.10.8=py39haa95532_2
+  - ca-certificates=2022.07.19=haa95532_0
+  - certifi=2022.6.15=py39haa95532_0
   - cffi=1.15.0=py39h2bbff1b_1
   - cfitsio=3.470=he774522_6
   - charls=2.2.0=h6c2663c_0
@@ -136,10 +136,10 @@ dependencies:
   - numpy=1.21.5=py39h7a0a035_2
   - numpy-base=1.21.5=py39hca35cd5_2
   - openjpeg=2.4.0=h4fc8c34_0
-  - openssl=1.1.1n=h2bbff1b_0
+  - openssl=1.1.1q=h2bbff1b_0
   - orjson=3.6.8=py39hcbf5309_0
   - packaging=21.3=pyhd3eb1b0_0
-  - pandas=1.4.2=py39hd77b12b_0
+  - pandas=1.4.3=py39hd77b12b_0
   - pandocfilters=1.5.0=pyhd3eb1b0_0
   - parso=0.8.3=pyhd3eb1b0_0
   - partd=1.2.0=pyhd3eb1b0_1
