@@ -30,6 +30,7 @@ pip install brainflow
 pip install mne
 pip install mne_bids
 pip install pybv
+pip install keyboard
 
 
 Dependiendo de la version del spyder, habrá que cambiar la version de kernel que se instale.
