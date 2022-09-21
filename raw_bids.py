@@ -12,7 +12,7 @@ import json
 import os
 import numpy as np
 
-def raw_bids(board_id,board,data,infor, marcadores, lista_marcadores, ronda):
+def raw_bids(board_id,board,data,infor, markers_list, run, folder_path):
     """
     Write BIDS format files.
     
@@ -82,10 +82,10 @@ def raw_bids(board_id,board,data,infor, marcadores, lista_marcadores, ronda):
     
     raw.info['subject_info']={'sex':gen,'birthday':dob,'hand':domi}
     
-    data_path = 'C:/Users/PaulaSaavedra/PaulaGD/IMAL/PA_Interfaz/Interfaz/'+ infor[0]['Tarea'] + '/BIDS/'
+    data_path = folder_path + '/' + infor[0]['Tarea'] + '/BIDS/'
     
     bids_path = BIDSPath(subject=infor[0]['Sujeto'], session=infor[0]['Sesion'],
-                         task=infor[0]['Tarea'], run='0'+str(ronda), root=data_path)
+                         task=infor[0]['Tarea'], run='0'+str(run), root=data_path)
     
     eventos = []
     tam = len(ch_names)+15 
@@ -95,7 +95,7 @@ def raw_bids(board_id,board,data,infor, marcadores, lista_marcadores, ronda):
             
     eventos_array=np.array(eventos[:][:][:])
 
-    write_raw_bids(raw, bids_path, format='BrainVision',allow_preload=True, events_data=eventos_array, event_id=lista_marcadores, overwrite=True);        
+    write_raw_bids(raw, bids_path, format='BrainVision',allow_preload=True, events_data=eventos_array, event_id=markers_list, overwrite=True);        
     
     # events.json           
     fileName = 'task-'+ infor[0]['Tarea'] + '_events.json'

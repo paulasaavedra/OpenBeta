@@ -9,7 +9,7 @@ import json
 import os
 from tkinter import Tk, ttk,font,Label, Entry, IntVar, StringVar, Radiobutton, Checkbutton, PhotoImage
 
-def subject_data():
+def subject_data(folder_path):
     
     '''
     
@@ -353,7 +353,7 @@ def subject_data():
        
         if (ch_names_option.get()==1):
             # Channel names file path
-            os.chdir("C:/Users/PaulaSaavedra/PaulaGD/IMAL/PA_Interfaz/OpenBCI_Python")
+            os.chdir(folder_path)
             ch_names = open("ch_names.txt", "r")
             names = ch_names.readlines()
             for i in range(len(names)):

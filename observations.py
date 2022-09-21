@@ -7,7 +7,7 @@ Created on Thu Apr  7 15:30:07 2022
 
 import tkinter as tk
 
-def observations(ronda):
+def observations(run):
     window = tk.Tk()
     window.geometry("340x200")
     window.title('Anotaciones')
@@ -15,7 +15,7 @@ def observations(ronda):
     info = []
     def GuardarTexto():
         anotaciones = chart.get("1.0","end")
-        info.append('ronda_'+str(ronda))
+        info.append('ronda_'+str(run))
         info.append(anotaciones)
     
     def Borrar():

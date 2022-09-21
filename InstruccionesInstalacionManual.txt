@@ -1,18 +1,36 @@
-1) Crear un environment con la siguiente linea:
+1) Crear el environment OpenBeta con la siguiente linea:
 
-conda create -n "myenv" python=3.9.12
+conda create -n OpenBeta python=3.9.12
 
 2) Activar el environment:
-conda activate myenv
+
+conda activate OpenBeta
 
 3) Luego instalar dentro del environment las siguientes lineas:
 
-pip install spyder-kernels=1.9.1
-pip install pynput
 conda install -c conda-forge psychopy
+
+Puede saltar el siguiente error:
+
+CondaHTTPError: HTTP 000 CONNECTION FAILED for url <https://conda.anaconda.org/conda-forge/win-64/qt-main-5.15.6-hf0cf448_0.tar.bz2>
+Elapsed: -
+
+An HTTP error occurred when trying to retrieve this URL.
+HTTP errors are often intermittent, and a simple retry will get you on your way.
+
+Intentalo de nuevo, hasta que veas:
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+
+pip install pynput
 pip install soundfile
 pip install psychtoolbox
 pip install brainflow
 pip install mne
 pip install mne_bids
+pip install pybv
 
+
+Dependiendo de la version del spyder, habrá que cambiar la version de kernel que se instale.
+pip install spyder-kernels==2.1 

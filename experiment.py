@@ -5,15 +5,14 @@ Created on Thu May 19 13:37:51 2022
 @author: PaulaSaavedra
 """
 
-from psychopy import visual, core, sound, monitors
-import psychopy
+from psychopy import visual, core, sound, monitors, prefs
 import random
 import psychtoolbox as ptb
-from pynput import keyboard
+import keyboard
 import time
 def experiment (info, board):
   
-    psychopy.prefs.hardware['audioLib'] = ['sounddevice','PTB', 'pyo','pygame']
+    prefs.hardware['audioLib'] = ['sounddevice','PTB', 'pyo','pygame']
     
         
     trial = ['std']*50

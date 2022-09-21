@@ -6,7 +6,7 @@ Created on Tue Oct 19 12:15:42 2021
 """
 
 import os
-folder_path = 'C:\\Users\\PaulaSaavedra\\PaulaGD\\IMAL\\PA_Interfaz\\OpenBCI_Python'
+folder_path = 'C:/Users/PaulaSaavedra/PaulaGD/IMAL/OpenBeta'
 
 os.chdir(folder_path)
 
@@ -18,8 +18,8 @@ from raw_bids import raw_bids
 from observations import observations
 import json
 
-import realtime
-import threading
+#import realtime
+#import threading
 import time
 import numpy as np
 import csv
@@ -28,19 +28,19 @@ import csv
 #%%
 def main():
     
-    information = subject_data()
+    information = subject_data(folder_path)
    
-    def siguiente_ronda(tecla):
+    def next_run(tecla):
         if tecla == kb.KeyCode.from_char('x'):
             return False
-    escuchador = kb.Listener(siguiente_ronda)
+    escuchador = kb.Listener(next_run)
     
-    rondas = int(information[0]['Rondas']) 
-    observations = []
+    runs = int(information[0]['Rondas']) 
+    observations_list = []
     
-    for ronda in range(1,rondas+1):
+    for run in range(1,runs+1):
         
-        print('Presione x para comenzar con la ronda ' + str(ronda))
+        print('Presione x para comenzar con la ronda ' + str(run))
          
         board_id = information[0]['Placa']
         port = information[0]['Puerto']
@@ -50,21 +50,20 @@ def main():
         t0 = time.time()
         board.start_stream ()
         
-        # if (ronda==1):
+        # if (run==1):
             
         #     hilo = threading.Thread(target=data_sent.append(board.get_current_board_data(32)), args=(board,))
         #     hilo.start()
         
             
-        with kb.Listener(siguiente_ronda) as escuchador:
+        with kb.Listener(next_run) as escuchador:
             escuchador.join()
             
-        print('Ronda '+str(ronda))
+        print('Ronda '+str(run))
         markers, tiempos, markers_list = experiment(information,board)    
        
         
         board.stop_stream ()
-        tf = time.time()
         data = board.get_board_data ()
         board.release_session ()
                
@@ -85,9 +84,7 @@ def main():
                 samples.append(j)
 
 
-        freq = board.get_sampling_rate(board_id)
-        tiempo_registro = np.arange(0, tf-t0, 1/freq)
-        
+               
         tiempos_rel = np.array(tiempos)-t0
         duracion = np.diff(tiempos_rel)
         duracion= np.append(duracion,0)
@@ -102,9 +99,9 @@ def main():
         my_event_file =  np.vstack((tiempos_rel, duracion, markers,values, samples ))
         
         
-        raw_bids(board_id,board,data,information, markers, markers_list, ronda)
-        nombre_archivo = 'sub-' + str(information[0]['Sujeto']) + '_ses-' + str(information[0]['Sesion'])  + '_task-' + str(information[0]['Tarea'])+'_run-0'+str(ronda)
-        bids_path =data_path = 'C:/Users/PaulaSaavedra/PaulaGD/IMAL/PA_Interfaz/Interfaz/'+ information[0]['Tarea'] + '/BIDS/' + 'sub-' + str(information[0]['Sujeto']) + '/' +  'ses-' + str(information[0]['Sesion']) + '/eeg/'
+        raw_bids(board_id,board,data,information, markers_list, run, folder_path)
+        nombre_archivo = 'sub-' + str(information[0]['Sujeto']) + '_ses-' + str(information[0]['Sesion'])  + '_task-' + str(information[0]['Tarea'])+'_run-0'+str(run)
+        bids_path = folder_path + '/' + information[0]['Tarea'] + '/BIDS/' + 'sub-' + str(information[0]['Sujeto']) + '/' +  'ses-' + str(information[0]['Sesion']) + '/eeg/'
         os.chdir(bids_path)
         
         
@@ -115,15 +112,15 @@ def main():
             for col in range(len(my_event_file.T)):
                 tsv_output.writerow(my_event_file[:,col])
 
-        observations.append(observations(ronda))
+        observations_list.append(observations(run))
         
-    data_path = 'C:/Users/PaulaSaavedra/PaulaGD/IMAL/PA_Interfaz/Interfaz/'+ information[0]['Tarea'] + '/BIDS/Code/Anotaciones/'    
+    data_path = folder_path + information[0]['Tarea'] + '/BIDS/Code/Anotaciones/'    
     if (int(information[0]['Sesion'])==1):
         os.makedirs(data_path)
     os.chdir(data_path)    
-    archivo = 'sub-' + str(information[0]['Sujeto']) + '_ses-' + str(information[0]['Sesion'])  + '_task-' + str(information[0]['Tarea'] + 'run0' + str(ronda))
+    archivo = 'sub-' + str(information[0]['Sujeto']) + '_ses-' + str(information[0]['Sesion'])  + '_task-' + str(information[0]['Tarea'] + 'run0' + str(run))
     with open(archivo + '.json', 'w') as file:
-            json.dump(observations, file, indent=1)
+            json.dump(observations_list, file, indent=1)
         
 
 if __name__ == '__main__':
