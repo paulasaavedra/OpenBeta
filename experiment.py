@@ -10,6 +10,7 @@ import random
 import psychtoolbox as ptb
 import keyboard
 import time
+
 def experiment (info, board):
   
     prefs.hardware['audioLib'] = ['sounddevice','PTB', 'pyo','pygame']

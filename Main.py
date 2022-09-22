@@ -12,18 +12,19 @@ os.chdir(folder_path)
 
 from pynput import keyboard as kb
 from subject_data import subject_data
-from experiment import experiment
 from prepare import prepare
 from raw_bids import raw_bids
 from observations import observations
 import json
-
 #import realtime
 #import threading
 import time
 import numpy as np
 import csv
 
+
+# Acá se importan los experimentos
+from experiment import experiment 
 
 #%%
 def main():
@@ -40,8 +41,7 @@ def main():
     
     for run in range(1,runs+1):
         
-        print('Presione x para comenzar con la ronda ' + str(run))
-         
+       
         board_id = information[0]['Placa']
         port = information[0]['Puerto']
         board = prepare(board_id, port)
@@ -49,6 +49,8 @@ def main():
         board.prepare_session ()
         t0 = time.time()
         board.start_stream ()
+        
+        print('Presione x para comenzar con la ronda ' + str(run))
         
         # if (run==1):
             
