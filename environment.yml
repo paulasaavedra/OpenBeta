@@ -1,4 +1,4 @@
-name: OpenBetaCata
+name: OpenBeta
 channels:
   - conda-forge
   - defaults
